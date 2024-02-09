@@ -9,6 +9,9 @@ services:
       POSTGRES_PASSWORD: dev
       POSTGRES_USER: dev
       POSTGRES_DB: billroo
+    ports:
+      - 5432:5432
+
   adminer:
     image: adminer
     restart: always
