@@ -9,6 +9,12 @@ expenseRouter.get("/", async (_req: Request, res: Response) => {
   res.send(result);
 });
 
+expenseRouter.post("/", async (req: Request, res: Response) => {
+  const data = req.body;
+  const result = await all();
+  res.send(result);
+});
+
 expenseRouter.get("/:id", async (req: Request, res: Response) => {
   const id: string = req.params.id;
   if (!id || id === " ") {

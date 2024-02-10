@@ -19,6 +19,30 @@ export const all = async (): Promise<Response> => {
   }
 };
 
+export const getExpenseForTheDay = async (): Promise<Response> => {
+  try {
+    // first get the
+    const res = await Pool.query(
+      `SELECT * from ${EXPENSES_TABLE} exp where exp.user_id=3`
+    );
+    return { data: res.rows };
+  } catch (err) {
+    return { data: [], msg: err.message };
+  }
+};
+
+export const addExpenseForTheDay = async (): Promise<Response> => {
+  try {
+    // first get the
+    const res = await Pool.query(
+      `SELECT * from ${EXPENSES_TABLE} exp where exp.user_id=3`
+    );
+    return { data: res.rows };
+  } catch (err) {
+    return { data: [], msg: err.message };
+  }
+};
+
 export const avgExpensePerCatergory = async (id: number): Promise<Response> => {
   try {
     const res = await Pool.query(QUERY_AVG(id));

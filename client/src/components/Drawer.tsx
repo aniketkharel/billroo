@@ -12,7 +12,6 @@ import ListItemText from "@mui/material/ListItemText";
 import { Avatar, IconButton, Link, Typography } from "@mui/material";
 import Image from "next/image";
 import { CategoryRounded, LogoutRounded, Money } from "@mui/icons-material";
-import { blue, deepOrange } from "@mui/material/colors";
 
 const drawerWidth = 180;
 
@@ -29,9 +28,6 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
           variant="regular"
         >
           <Image src={"/logo.svg"} width={90} height={38} alt="logo" />
-          <Typography variant="caption" color={blue[200]} fontStyle={"italic"}>
-            {new Date().toDateString()}
-          </Typography>
           <Box display={"flex"} flexDirection={"row"} gap={1} alignItems={"center"}>
             <Box>
               <Avatar sx={{ width: 28, height: 28, bgcolor: "gray" }} variant="circular">
