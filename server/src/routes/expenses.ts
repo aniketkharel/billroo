@@ -10,7 +10,7 @@ expenseRouter.get("/", async (_req: Request, res: Response) => {
 });
 
 expenseRouter.get("/:cat", async (req: Request, res: Response) => {
-  const category :String= req.params.cat
+  const category: string = req.params.cat;
   const result = await all();
   res.send(result);
 });

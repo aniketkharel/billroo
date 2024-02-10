@@ -1,7 +1,17 @@
-import { Request, Response } from "express";
+import { CATEGORY_TABLE } from "../util/tables";
+import { Pool } from "../bin/pg";
+import { QueryResultRow } from "pg";
 
-export const all = (req: Request, res: Response) => {
-  res.render("contact", {
-    title: "Contact",
-  });
+interface Response {
+  data: QueryResultRow[];
+  msg?: string;
+}
+
+export const all = async (): Promise<Response> => {
+  try {
+    const res = await Pool.query(`SELECT * from ${CATEGORY_TABLE}`);
+    return { data: res.rows };
+  } catch (err) {
+    return { data: [], msg: err.message };
+  }
 };

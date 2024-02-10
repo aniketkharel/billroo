@@ -4,7 +4,7 @@ import { all } from "../controllers/category";
 
 export const categoryRouter: Router = Router();
 
-categoryRouter.get("/", (req: Request, res: Response) => {
-  const expenses = all(req, res);
-  res.send(expenses);
+categoryRouter.get("/", async (req: Request, res: Response) => {
+  const results = await all();
+  res.send(results);
 });
