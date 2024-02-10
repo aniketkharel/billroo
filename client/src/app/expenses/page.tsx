@@ -2,7 +2,9 @@ import * as React from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Expense } from "../../components/Expense";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
+import { AddBoxOutlined } from "@mui/icons-material";
+import Link from "next/link";
 
 const getExpenses = async () => {
   const response = await fetch(process.env.SERVER_URI + "expenses");
@@ -14,13 +16,20 @@ export default async function Expenses() {
 
   return (
     <Container maxWidth="xl">
-      <Box sx={{ maxWidth: "xl" }}>
+      <Box sx={{ maxWidth: "xl", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <Typography variant="h5" component="h4" sx={{ mb: 1 }}>
           Am i spending too much ?
         </Typography>
-        <Box sx={{ maxWidth: "lg", mb: 3 }}>
-          <Expense data={data.data} />
+        <Box>
+          <Link href={"/expenses/add"}>
+            <IconButton size="large" aria-label="Add Expenses">
+              <AddBoxOutlined color="primary" fontSize="large" />
+            </IconButton>
+          </Link>
         </Box>
+      </Box>
+      <Box sx={{ maxWidth: "lg", mb: 3 }}>
+        <Expense data={data.data} />
       </Box>
     </Container>
   );

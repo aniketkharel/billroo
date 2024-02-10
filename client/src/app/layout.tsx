@@ -8,6 +8,7 @@ import ClippedDrawer from "@/components/Drawer";
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>

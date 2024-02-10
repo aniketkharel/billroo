@@ -36,7 +36,7 @@ export default function Login() {
         label="Your ID"
         onChange={(e) => setuserId(e.target.value)}
       />
-      <Button color={"secondary"} variant="contained" onClick={onLogin} fullWidth>
+      <Button color={"primary"} variant="contained" onClick={onLogin} fullWidth>
         Login
       </Button>
     </Box>

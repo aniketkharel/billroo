@@ -1,4 +1,4 @@
-import { CATEGORY_TABLE } from "../util/tables";
+import { CATEGORY_TABLE } from "../consts/tables";
 import { Pool } from "../bin/pg";
 import { QueryResultRow } from "pg";
 
