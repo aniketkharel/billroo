@@ -1,7 +1,7 @@
 "use client";
 
-import { Box, List, ListItem } from "@mui/material";
 import React from "react";
+import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 
 interface Data {
   _id: string;
@@ -16,9 +16,14 @@ export const Expense = (props: { data: [Data] }) => {
     <Box>
       <List>
         {props.data.map((exp) => (
-          <ListItem>
-            {exp.amount} {exp.date}
-          </ListItem>
+          <>
+            <ListItem sx={{ textTransform: "capitalize" }}>
+              <Typography variant="h6">
+                {exp.amount} {exp.date.toString()}
+              </Typography>
+            </ListItem>
+            <Divider component="li" />
+          </>
         ))}
       </List>
     </Box>

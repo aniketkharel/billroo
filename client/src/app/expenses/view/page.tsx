@@ -3,37 +3,23 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { IconButton, Link, Typography } from "@mui/material";
 import { ArrowBack, MoneyOffSharp } from "@mui/icons-material";
-import { FormEvent } from "react";
-import { Category } from "@/components/Category";
+import { ViewCategory } from "@/components/ViewCategory";
 
 const getExpensesForTheDayWithCategory = async () => {
   const data = await fetch(process.env.SERVER_URI + "expenses/today/all/3");
   return data.json();
 };
 
-const getCategories = async () => {
-  const result = await fetch(process.env.SERVER_URI + "categories");
-  return result.json();
-};
-
-export default async function Expenses() {
-  const categories = await getCategories();
-
+export default async function Daily() {
   const data = await getExpensesForTheDayWithCategory();
-
-  const addExpenseForTheDay = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData();
-    const result = await fetch(process.env.SERVER_URI + "expenses", { method: "POST", body: data });
-    console.log(result.json());
-  };
 
   return (
     <Container maxWidth="xl">
       <Box sx={{ maxWidth: "xl" }}>
         <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-          <Typography variant="h5" component="h4" sx={{ mb: 1, p: 0, alignItems: "center", display: "flex", gap: 2 }}>
-            <MoneyOffSharp /> How much did i spend today ?
+          <Typography variant="h5" component="h5" sx={{ mb: 1, p: 0, alignItems: "center", display: "flex", gap: 2 }}>
+            <MoneyOffSharp /> Expenses for,
+            <Typography sx={{ fontStyle: "inherit", fontWeight: "bold", fontSize: "1em" }}>{new Date().toDateString()}</Typography>
           </Typography>
           <Box>
             <Link href={"/expenses"}>
@@ -43,7 +29,10 @@ export default async function Expenses() {
             </Link>
           </Box>
         </Box>
-        <Category data={categories.data} />
+
+        <Box sx={{ display: "flex", flexDirection: "row" }}>
+          <ViewCategory data={data.data} />
+        </Box>
       </Box>
     </Container>
   );

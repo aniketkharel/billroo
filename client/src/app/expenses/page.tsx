@@ -3,7 +3,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Expense } from "../../components/Expense";
 import { IconButton, Typography } from "@mui/material";
-import { AddBoxOutlined } from "@mui/icons-material";
+import { AddBoxOutlined, MoneySharp } from "@mui/icons-material";
 import Link from "next/link";
 
 const getExpenses = async () => {
@@ -17,8 +17,8 @@ export default async function Expenses() {
   return (
     <Container maxWidth="xl">
       <Box sx={{ maxWidth: "xl", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-        <Typography variant="h5" component="h4" sx={{ mb: 1 }}>
-          Am i spending too much ?
+        <Typography variant="h5" component="h4" sx={{ mb: 1, alignItems: "center", display: "flex", gap: 2 }}>
+          <MoneySharp /> Am i spending too much ?
         </Typography>
         <Box>
           <Link href={"/expenses/add"}>

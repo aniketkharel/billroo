@@ -9,9 +9,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Avatar, IconButton, Link, Typography } from "@mui/material";
+import { Avatar, Divider, IconButton, Link } from "@mui/material";
 import Image from "next/image";
-import { CategoryRounded, LogoutRounded, Money } from "@mui/icons-material";
+import { AddSharp, BookSharp, CategoryRounded, LogoutRounded, Money } from "@mui/icons-material";
 
 const drawerWidth = 180;
 
@@ -54,26 +54,60 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
         <Box sx={{ overflow: "auto" }}>
           <List>
             {[
-              { title: "Expenses", link: "/expenses", icon: <Money /> },
-              { title: "Category", link: "/category", icon: <CategoryRounded /> },
+              {
+                title: "Expenses",
+                link: "/expenses",
+                icon: <Money />,
+                sub: [
+                  { title: "Add", link: "/expenses/add", icon: <AddSharp /> },
+                  { title: "Daily", link: "/expenses/view", icon: <BookSharp /> },
+                ],
+              },
+              { title: "Categories", link: "/categories", icon: <CategoryRounded /> },
             ].map((text, index) => (
-              <ListItem key={text.title} disablePadding>
-                <ListItemButton>
-                  <Link
-                    href={text.link}
-                    display={"flex"}
-                    color={"inherit"}
-                    underline="none"
-                    textTransform={"none"}
-                    align="center"
-                    alignItems={"center"}
-                    justifyContent={"center"}
-                  >
-                    <ListItemIcon>{text.icon}</ListItemIcon>
-                    <ListItemText primary={text.title} />
-                  </Link>
-                </ListItemButton>
-              </ListItem>
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyItems: "center" }} key={index}>
+                <Box>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      <Link
+                        href={text.link}
+                        display={"flex"}
+                        color={"inherit"}
+                        underline="none"
+                        textTransform={"none"}
+                        align="center"
+                        alignItems={"center"}
+                        justifyContent={"center"}
+                      >
+                        <ListItemIcon>{text.icon}</ListItemIcon>
+                        <ListItemText primary={text.title} />
+                      </Link>
+                    </ListItemButton>
+                  </ListItem>
+                </Box>
+                <Divider />
+                <Box>
+                  <List key={index}>
+                    {text.sub?.map((su, index) => (
+                      <ListItemButton key={index}>
+                        <Link
+                          href={su.link}
+                          display={"flex"}
+                          color={"inherit"}
+                          underline="none"
+                          textTransform={"none"}
+                          align="center"
+                          alignItems={"center"}
+                          justifyContent={"center"}
+                        >
+                          <ListItemIcon>{su.icon}</ListItemIcon>
+                          <ListItemText primary={su.title} />
+                        </Link>
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Box>
+              </Box>
             ))}
           </List>
         </Box>

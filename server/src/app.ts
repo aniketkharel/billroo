@@ -24,6 +24,6 @@ app.use(cors({ origin: ["http://localhost:3000", "http://localhost:8083"] }));
  *
  * */
 app.use("/api/expenses", expenseRouter);
-app.use("/api/category", categoryRouter);
+app.use("/api/categories", categoryRouter);
 
 export default app;
