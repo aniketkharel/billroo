@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import { IconButton, Link, Typography } from "@mui/material";
 import { ArrowBack, MoneyOffSharp } from "@mui/icons-material";
 import { FormEvent } from "react";
-import { Category } from "@/components/Category";
+import { AddExpense } from "@/components/AddExpenses";
 
 const getExpensesForTheDayWithCategory = async () => {
   const data = await fetch(process.env.SERVER_URI + "expenses/today/all/3");
@@ -43,7 +43,7 @@ export default async function Expenses() {
             </Link>
           </Box>
         </Box>
-        <Category data={categories.data} />
+        <AddExpense data={categories.data} />
       </Box>
     </Container>
   );
