@@ -1,3 +1,5 @@
+import { describe, it, expect } from "@jest/globals";
+
 import request from "supertest";
 import app from "../src/app";
 
@@ -8,30 +10,24 @@ describe("GET /api", () => {
   });
 });
 
-// expense for the day
-describe("GET /api/expenses/today/3", () => {
+// expensesfor the day
+describe("GET /api/expenses/today/all/3", () => {
   it("should return 200 OK", (done: any) => {
-    request(app).get("/api/expenses/today/3").expect(200, done);
+    request(app).get("/api/expenses/today/all/2").expect(200, done);
   });
 });
 
-// averages calculation for the user
-describe("GET /api/expenses/3", () => {
-  it("should return 200 OK", (done: any) => {
-    request(app).get("/api/expenses/3").expect(200, done);
+describe("POST /expenses/today", () => {
+  it("should return true if data is inserted", (done) => {
+    request(app)
+      .post("/api/expenses/today")
+      .field("user_id", 3)
+      .field("cat_id", 1)
+      .field("amount", 10)
+      .end(function (err, res) {
+        expect(res.body.msg).toBe("No Data");
+        done();
+      })
+      .expect(200);
   });
 });
-
-// describe("POST /contact", () => {
-//   it("should return false from assert when no message is found", (done) => {
-//     request(app)
-//       .post("/contact")
-//       .field("name", "John Doe")
-//       .field("email", "john@me.com")
-//       .end(function (err, res) {
-//         expect(res.error).to.be.false;
-//         done();
-//       })
-//       .expect(302);
-//   });
-// });

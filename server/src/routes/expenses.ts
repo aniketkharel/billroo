@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { Request, Response } from "express";
 import {
+  addExpenseForTheDayPerCategory,
   all,
   avgExpensePerCatergory,
-  getExpenseForTheDay,
   getExpenseForTheDayWithItsCateogry,
+  updateAmount,
 } from "../controllers/expenses";
 
 export const expenseRouter: Router = Router();
@@ -32,17 +33,38 @@ expenseRouter.get("/today/all/:id", async (req: Request, res: Response) => {
   res.send(result);
 });
 
-expenseRouter.get("/today/:id", async (req: Request, res: Response) => {
-  const id: string = req.params.id;
-  if (!id || id === " ") {
+expenseRouter.post("/today", async (req: Request, res: Response) => {
+  const id: string = req.body.user_id;
+  const cat_id: string = req.body.cat_id;
+  console.log(id, cat_id, req.body);
+  if (!id || id === " " || !cat_id || cat_id === " ") {
     return res.send({ data: [], msg: "No Data" });
   }
-  const result = await getExpenseForTheDay(parseInt(id));
+  const result = await addExpenseForTheDayPerCategory(
+    parseInt(id),
+    parseInt(cat_id)
+  );
   res.send(result);
 });
 
-expenseRouter.post("/", async (req: Request, res: Response) => {
-  const data = req.body;
-  const result = await all();
+expenseRouter.put("/today", async (req: Request, res: Response) => {
+  const id: string = req.body.user_id;
+  const exp_id: string = req.body.exp_id;
+  const amount: string = req.body.amount;
+  if (
+    !id ||
+    id === " " ||
+    !amount ||
+    amount === " " ||
+    !exp_id ||
+    exp_id === " "
+  ) {
+    return res.send({ data: [], msg: "No Data" });
+  }
+  const result = await updateAmount(
+    parseInt(exp_id),
+    parseInt(id),
+    parseInt(amount)
+  );
   res.send(result);
 });

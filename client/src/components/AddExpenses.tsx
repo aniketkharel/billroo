@@ -1,7 +1,9 @@
 "use client";
 
-import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
+import { AddSharp, RemoveRedEye } from "@mui/icons-material";
+import { Box, Button, FormControl, InputLabel, Link, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
+import DialogPop from "./Dialog";
 
 interface Data {
   id: string;
@@ -10,19 +12,62 @@ interface Data {
 
 export const AddExpense = (props: { data: [Data] }) => {
   const [category, setCategory] = React.useState("");
+  const [input, setInput] = React.useState<number>(0);
+  const [error, setError] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const [sev, setSev] = React.useState("success");
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
   };
 
+  const addExpense = async () => {
+    const amount = input;
+    if (category === "" || amount == undefined) {
+      return setError(true);
+    } else if (amount <= 0 || amount >= 101) {
+      return setError(true);
+    } else {
+      setError(false);
+      const formData = new FormData();
+      formData.append("cat_id", category);
+      formData.append("user_id", "3");
+      formData.append("amount", `${amount}`);
+      const response = await fetch(process.env.SERVER_URI + "expenses/today", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: 3,
+          cat_id: category,
+          amount,
+        }),
+      });
+      const data = await response.json();
+      if (data.status == 403) {
+        setOpen(true);
+        setMessage(data.msg);
+        setSev("warning");
+      } else {
+        setOpen(true);
+        setMessage(data.msg);
+        setSev("success");
+      }
+    }
+  };
+
   return (
-    <Box>
-      <FormControl sx={{ m: 1, minWidth: 240 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 4 }}>
+      <FormControl sx={{ minWidth: 240 }}>
+        <DialogPop open={open} setOpen={setOpen} content={message} severity={sev} />
         <InputLabel id="category-label">Categories</InputLabel>
         <Select labelId="category-label" id="category-label-id" value={category} label="Categories" onChange={handleChange}>
           {props.data ? (
             props.data.map((exp) => (
-              <MenuItem sx={{ textTransform: "capitalize" }} key={exp.id} value={exp.id}>
+              <MenuItem key={exp.id} value={exp.id}>
                 <Typography variant="h6">{exp.name}</Typography>
               </MenuItem>
             ))
@@ -34,6 +79,27 @@ export const AddExpense = (props: { data: [Data] }) => {
         </Select>
       </FormControl>
       <Box>
+        <TextField
+          sx={{ width: "27ch" }}
+          required
+          error={error}
+          id="outlined-required"
+          type="number"
+          label="Amount ($)"
+          defaultValue={input}
+          onChange={(e) => setInput(parseInt(e.target.value))}
+        />
+      </Box>
+      <Box display={"flex"} flexDirection={"row"} gap={4} alignContent={"center"} justifyContent={"center"}>
+        <Button variant="outlined" onClick={addExpense}>
+          <AddSharp /> Add
+        </Button>
+
+        <Link href="/expenses/view">
+          <Button variant="outlined">
+            <RemoveRedEye /> &nbsp; Go to Today's expenses
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

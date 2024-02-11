@@ -38,11 +38,15 @@ ORDER BY
   ua.user_id, ua.category_id;`;
 };
 
-export const QUERY = `select exp.date,exp.amount,exp.user_id,cat.name,cat.id as cat_id from expenses exp join category cat
- on cat.id=exp.category_id where exp.user_id=3;`;
-
-export const QUERY_EXPENSE_CURRENT_DAY = (user_id: number): string => {
+export const QUERY_EXPENSES_CURRENT_DAY = (user_id: number): string => {
   return `select * from expenses exp where exp.user_id=${user_id} and exp.date=CURRENT_DATE;`;
+};
+
+export const QUERY_EXPENSE_CURRENT_DAY_PER_CATEGORY = (
+  user_id: number,
+  cat_id: number
+): string => {
+  return `select * from expenses exp where exp.user_id=${user_id} and exp.date=CURRENT_DATE and exp.category_id=${cat_id};`;
 };
 
 export const QUERY_EXPENSES_WITH_CATEGORY_CURRENT_DAY = (
@@ -61,4 +65,22 @@ JOIN
 WHERE
   e.user_id= ${id} and
   e.date = CURRENT_DATE;`;
+};
+
+export const INSERT_QUERY_EXPENSE_CURRENT_DAY_PER_CATEGORY = (
+  user_id: number,
+  cat_id: number
+): string => {
+  return `insert into expenses (amount, user_id, category_id, date) values(20, ${user_id}, ${cat_id}, CURRENT_DATE);`;
+};
+
+export const UPDATE_EXPENSE_AMOUNT = (
+  exp_id: number,
+  user_id: number,
+  amount: number
+): string => {
+  return `
+ UPDATE expenses
+SET amount = ${amount}
+WHERE user_id = ${user_id} AND id=${exp_id};`;
 };

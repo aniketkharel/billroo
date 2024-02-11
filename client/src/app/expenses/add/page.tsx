@@ -19,15 +19,6 @@ const getCategories = async () => {
 export default async function Expenses() {
   const categories = await getCategories();
 
-  const data = await getExpensesForTheDayWithCategory();
-
-  const addExpenseForTheDay = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData();
-    const result = await fetch(process.env.SERVER_URI + "expenses", { method: "POST", body: data });
-    console.log(result.json());
-  };
-
   return (
     <Container maxWidth="xl">
       <Box sx={{ maxWidth: "xl" }}>
