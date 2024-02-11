@@ -61,7 +61,7 @@ export const AddExpense = (props: { data: [Data] }) => {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 4 }}>
-      <FormControl sx={{ minWidth: 240 }}>
+      <FormControl sx={{ minWidth: 357 }}>
         <DialogPop open={open} setOpen={setOpen} content={message} severity={sev} />
         <InputLabel id="category-label">Categories</InputLabel>
         <Select labelId="category-label" id="category-label-id" value={category} label="Categories" onChange={handleChange}>
@@ -80,7 +80,7 @@ export const AddExpense = (props: { data: [Data] }) => {
       </FormControl>
       <Box>
         <TextField
-          sx={{ width: "27ch" }}
+          sx={{ width: "35ch" }}
           required
           error={error}
           id="outlined-required"

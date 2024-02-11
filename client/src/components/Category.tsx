@@ -17,7 +17,7 @@ export const Category = (props: { data: [Data] }) => {
 
   return (
     <Box>
-      <FormControl sx={{ m: 1, minWidth: 240 }}>
+      <FormControl sx={{ m: 1, minWidth: 357 }}>
         <InputLabel id="category-label">Categories</InputLabel>
         <Select labelId="category-label" id="category-label-id" value={category} label="Categories" onChange={handleChange}>
           {props.data ? (
