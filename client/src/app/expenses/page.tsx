@@ -1,5 +1,4 @@
 import * as React from "react";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Expense } from "../../components/Expense";
 import { Button, Typography } from "@mui/material";
@@ -16,8 +15,8 @@ export default async function Expenses() {
   const data = await getExpenses();
 
   return (
-    <Container maxWidth="xl">
-      <Box sx={{ maxWidth: "xl", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+    <>
+      <Box sx={{ maxWidth: "md", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
         <Typography variant="h5" component="h4" sx={{ mb: 1, alignItems: "center", display: "flex", gap: 2 }}>
           <MoneySharp /> Am i spending too much ?
         </Typography>
@@ -29,9 +28,9 @@ export default async function Expenses() {
           </Link>
         </Box>
       </Box>
-      <Box sx={{ maxWidth: "lg", mb: 3, mt: 4 }}>
+      <Box sx={{ mb: 3, mt: 4, mx: "auto" }}>
         <Expense data={data.data} />
       </Box>
-    </Container>
+    </>
   );
 }

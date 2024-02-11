@@ -6,15 +6,20 @@ import * as React from "react";
 
 export default function Login() {
   const router = useRouter();
-  const [userId, setuserId] = React.useState<string>("");
   const [error, seterror] = React.useState<boolean>(false);
+  const [userId, setuserId] = React.useState(() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("userId")) {
+      return localStorage.getItem("userId");
+    }
+  });
 
   const onLogin = () => {
     if (!userId || userId === " ") {
       seterror(true);
     } else {
-      router.push("/expenses");
+      localStorage.setItem("userId", userId.toString());
       seterror(false);
+      router.push("/expenses");
     }
   };
 

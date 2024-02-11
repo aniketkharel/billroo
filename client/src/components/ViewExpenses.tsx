@@ -28,7 +28,7 @@ export const ViewExpenses = (props: { data: [Data] }) => {
   };
 
   return (
-    <Box>
+    <Box maxWidth={"md"}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 420 }} aria-label="simple table">
           <TableHead>

@@ -7,7 +7,7 @@ import Login from "@/components/Login";
 
 export default function Home() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="xl">
       <Box>
         <Box
           sx={{

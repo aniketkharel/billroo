@@ -9,7 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Avatar, Divider, IconButton, Link } from "@mui/material";
+import { Avatar, IconButton, Link } from "@mui/material";
 import Image from "next/image";
 import { AddSharp, BookSharp, CategoryRounded, LogoutRounded, Money } from "@mui/icons-material";
 
@@ -30,8 +30,8 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
           <Image src={"/logo.svg"} width={90} height={38} alt="logo" />
           <Box display={"flex"} flexDirection={"row"} gap={1} alignItems={"center"}>
             <Box>
-              <Avatar sx={{ width: 28, height: 28, bgcolor: "gray" }} variant="circular">
-                B
+              <Avatar sx={{ width: 32, height: 32, bgcolor: "gray" }} variant="circular">
+                {localStorage.getItem("userId") || "B"}
               </Avatar>
             </Box>
             <Box>
@@ -86,12 +86,13 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
                   </ListItem>
                 </Box>
                 <Box>
-                  <List key={index}>
+                  <List>
                     {text.sub?.map((su, index) => (
                       <Link
                         href={su.link}
                         display={"flex"}
                         minWidth={"100%"}
+                        key={index}
                         mb={1}
                         color={"inherit"}
                         underline="none"
