@@ -4,6 +4,8 @@ import { AddSharp, RemoveRedEye } from "@mui/icons-material";
 import { Box, Button, FormControl, InputLabel, Link, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
 import DialogPop from "./Dialog";
+import { AlertColor, AlertPropsColorOverrides } from "@mui/material";
+import { OverridableStringUnion } from "@mui/types";
 
 interface Data {
   id: string;
@@ -16,7 +18,7 @@ export const AddExpense = (props: { data: [Data] }) => {
   const [error, setError] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState("");
-  const [sev, setSev] = React.useState("success");
+  const [sev, setSev] = React.useState<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>>("success");
 
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
@@ -30,10 +32,6 @@ export const AddExpense = (props: { data: [Data] }) => {
       return setError(true);
     } else {
       setError(false);
-      const formData = new FormData();
-      formData.append("cat_id", category);
-      formData.append("user_id", "3");
-      formData.append("amount", `${amount}`);
       const response = await fetch(process.env.SERVER_URI + "expenses/today", {
         method: "POST",
         headers: {
@@ -54,6 +52,7 @@ export const AddExpense = (props: { data: [Data] }) => {
       } else {
         setOpen(true);
         setMessage(data.msg);
+        setInput(0);
         setSev("success");
       }
     }

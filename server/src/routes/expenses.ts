@@ -36,13 +36,14 @@ expenseRouter.get("/today/all/:id", async (req: Request, res: Response) => {
 expenseRouter.post("/today", async (req: Request, res: Response) => {
   const id: string = req.body.user_id;
   const cat_id: string = req.body.cat_id;
-  console.log(id, cat_id, req.body);
+  const amount: string = req.body.amount;
   if (!id || id === " " || !cat_id || cat_id === " ") {
     return res.send({ data: [], msg: "No Data" });
   }
   const result = await addExpenseForTheDayPerCategory(
     parseInt(id),
-    parseInt(cat_id)
+    parseInt(cat_id),
+    parseInt(amount)
   );
   res.send(result);
 });

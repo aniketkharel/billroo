@@ -4,6 +4,8 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import React, { useState } from "react";
 import DialogPop from "./Dialog";
 import { useRouter } from "next/navigation";
+import { AlertColor, AlertPropsColorOverrides } from "@mui/material";
+import { OverridableStringUnion } from "@mui/types";
 
 interface Data {
   expense_id: number;
@@ -17,7 +19,7 @@ export const EditExpense = (props: { data: Data; setOpen: React.Dispatch<React.S
   const [error, setError] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState("");
-  const [sev, setSev] = React.useState("success");
+  const [sev, setSev] = React.useState<OverridableStringUnion<AlertColor, AlertPropsColorOverrides>>("success");
   const router = useRouter();
 
   const handleClose = () => {

@@ -69,9 +69,10 @@ WHERE
 
 export const INSERT_QUERY_EXPENSE_CURRENT_DAY_PER_CATEGORY = (
   user_id: number,
-  cat_id: number
+  cat_id: number,
+  amount: number
 ): string => {
-  return `insert into expenses (amount, user_id, category_id, date) values(20, ${user_id}, ${cat_id}, CURRENT_DATE);`;
+  return `insert into expenses (amount, user_id, category_id, date) values(${amount}, ${user_id}, ${cat_id}, CURRENT_DATE);`;
 };
 
 export const UPDATE_EXPENSE_AMOUNT = (

@@ -17,7 +17,7 @@ export default function ProTip() {
     <Box>
       <Typography sx={{ mt: 6, mb: 3, color: "text.secondary" }}>
         <LightBulbIcon sx={{ mr: 1, verticalAlign: "middle" }} />
-        Tip: Use <b>1, 2 </b>or 3, <b> does not matter here</b>
+        Tip: Use <b>1, 2 </b>or 3, <b> does not matter here. "It does not work"</b>
       </Typography>
     </Box>
   );

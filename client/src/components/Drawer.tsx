@@ -31,7 +31,7 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
           <Box display={"flex"} flexDirection={"row"} gap={1} alignItems={"center"}>
             <Box>
               <Avatar sx={{ width: 32, height: 32, bgcolor: "gray" }} variant="circular">
-                {localStorage.getItem("userId") || "B"}
+                {"A" || "B"}
               </Avatar>
             </Box>
             <Box>

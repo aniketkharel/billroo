@@ -10,7 +10,7 @@ describe("GET /api", () => {
   });
 });
 
-// expensesfor the day
+// expenses for the day
 describe("GET /api/expenses/today/all/3", () => {
   it("should return 200 OK", (done: any) => {
     request(app).get("/api/expenses/today/all/2").expect(200, done);

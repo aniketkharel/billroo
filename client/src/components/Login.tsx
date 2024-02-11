@@ -32,13 +32,13 @@ export default function Login() {
       }}
     >
       <TextField
-        sx={{ padding: 0, mb: 2 }}
+        sx={{ mb: 2 }}
         title="UserId"
         error={error}
-        variant="outlined"
+        variant="standard"
         required={true}
         value={userId}
-        label="Your ID"
+        label="ID"
         onChange={(e) => setuserId(e.target.value)}
       />
       <Button color={"primary"} variant="contained" onClick={onLogin} fullWidth>
