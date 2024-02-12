@@ -1,6 +1,6 @@
 "use client";
 
-import { AddSharp, Edit } from "@mui/icons-material";
+import { AddSharp, EditOutlined } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -137,7 +137,7 @@ export const ViewExpenses = () => {
                         });
                       }}
                     >
-                      <Edit color="primary" />
+                      <EditOutlined color="primary" />
                     </IconButton>
                   </TableCell>
                 </TableRow>

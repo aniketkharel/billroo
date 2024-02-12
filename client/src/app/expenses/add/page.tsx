@@ -1,8 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { IconButton, Link, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { ArrowBack, MoneyOffSharp } from "@mui/icons-material";
 import { AddExpense } from "@/components/AddExpenses";
+import Link from "next/link";
 
 const getCategories = async () => {
   const result = await fetch(process.env.SERVER_URI + "categories");

@@ -1,8 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { IconButton, Link, Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import { ArrowBack, MoneyOffSharp } from "@mui/icons-material";
 import { ViewExpenses } from "@/components/ViewExpenses";
+import Link from "next/link";
 
 export default async function Daily() {
   return (

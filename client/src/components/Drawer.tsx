@@ -15,7 +15,6 @@ import { AddSharp, BookSharp, CategoryRounded, LogoutRounded, Money, QuestionMar
 import { useUserContext } from "@/user";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { deepPurple, red } from "@mui/material/colors";
 
 const drawerWidth = 180;
 

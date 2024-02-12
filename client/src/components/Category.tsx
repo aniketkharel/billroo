@@ -2,6 +2,7 @@
 
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
 import React from "react";
+import { Icon } from "./Icons";
 
 interface Data {
   id: string;
@@ -23,7 +24,10 @@ export const Category = (props: { data: [Data] }) => {
           {props.data ? (
             props.data.map((exp) => (
               <MenuItem sx={{ textTransform: "capitalize" }} key={exp.id} value={exp.id}>
-                <Typography variant="h6">{exp.name}</Typography>
+                <Typography variant="inherit" display="block" gutterBottom sx={{ display: "flex", gap: 2, alignContent: "center" }}>
+                  <Box>{exp.name}</Box>
+                  <Box fontSize={2}>{Icon(exp.name)}</Box>
+                </Typography>
               </MenuItem>
             ))
           ) : (
