@@ -4,15 +4,7 @@ import { IconButton, Link, Typography } from "@mui/material";
 import { ArrowBack, MoneyOffSharp } from "@mui/icons-material";
 import { ViewExpenses } from "@/components/ViewExpenses";
 
-// https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#fetching-data-on-the-client-with-route-handlers, learned about it today
-const getExpensesForTheDayWithCategory = async () => {
-  const data = await fetch(process.env.SERVER_URI + "expenses/today/all/3", { cache: "no-cache" });
-  return data.json();
-};
-
 export default async function Daily() {
-  const data = await getExpensesForTheDayWithCategory();
-
   return (
     <Box sx={{ maxWidth: "sm" }}>
       <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
@@ -29,7 +21,7 @@ export default async function Daily() {
         </Box>
       </Box>
       <Box sx={{ mt: 4, mx: "auto" }}>
-        <ViewExpenses data={data.data} />
+        <ViewExpenses />
       </Box>
     </Box>
   );

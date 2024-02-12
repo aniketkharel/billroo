@@ -1,11 +1,13 @@
 "use client";
 
 import { AddSharp, RemoveRedEye } from "@mui/icons-material";
-import { Box, Button, FormControl, InputLabel, Link, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import React from "react";
 import DialogPop from "./Dialog";
 import { AlertColor, AlertPropsColorOverrides } from "@mui/material";
 import { OverridableStringUnion } from "@mui/types";
+import { useUserContext } from "@/user";
+import Link from "next/link";
 
 interface Data {
   id: string;
@@ -13,6 +15,7 @@ interface Data {
 }
 
 export const AddExpense = (props: { data: [Data] }) => {
+  const { id } = useUserContext();
   const [category, setCategory] = React.useState("");
   const [input, setInput] = React.useState<number>(0);
   const [error, setError] = React.useState(false);
@@ -39,11 +42,12 @@ export const AddExpense = (props: { data: [Data] }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: 3,
+          user_id: id,
           cat_id: category,
           amount,
         }),
       });
+      console.log(id, category, amount);
       const data = await response.json();
       if (data.status == 403) {
         setOpen(true);
@@ -92,7 +96,6 @@ export const AddExpense = (props: { data: [Data] }) => {
         <Button variant="outlined" onClick={addExpense}>
           <AddSharp /> Add
         </Button>
-
         <Link href="/expenses/view">
           <Button variant="outlined">
             <RemoveRedEye /> &nbsp; Go to Today's expenses

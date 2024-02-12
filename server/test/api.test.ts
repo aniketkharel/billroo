@@ -3,6 +3,8 @@ import { describe, it, expect } from "@jest/globals";
 import request from "supertest";
 import app from "../src/app";
 
+const user_id = 91235;
+
 // no routes defined for /
 describe("GET /api", () => {
   it("should return 400 NOT FOUND", () => {
@@ -22,7 +24,7 @@ describe("POST /expenses/today", () => {
   it("should return true if data is inserted", (done) => {
     request(app)
       .post("/api/expenses/today")
-      .field("user_id", 3)
+      .field("user_id", user_id)
       .field("cat_id", 1)
       .field("amount", 10)
       .end(function (err, res) {
@@ -38,7 +40,7 @@ describe("PUT /expenses/today", () => {
   it("should return 404 Bad Request", (done) => {
     request(app)
       .put("/api/expenses/today")
-      .field("user_id", 3)
+      .field("user_id", user_id)
       .field("exp_id", 41)
       .field("amount", 10)
       .end(function (_err, res) {

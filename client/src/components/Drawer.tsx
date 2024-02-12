@@ -9,13 +9,25 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Avatar, IconButton, Link } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import Image from "next/image";
-import { AddSharp, BookSharp, CategoryRounded, LogoutRounded, Money } from "@mui/icons-material";
+import { AddSharp, BookSharp, CategoryRounded, LogoutRounded, Money, QuestionMarkOutlined } from "@mui/icons-material";
+import { useUserContext } from "@/user";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { deepPurple, red } from "@mui/material/colors";
 
 const drawerWidth = 180;
 
 export default function ClippedDrawer(props: { children: React.ReactNode }) {
+  const { id, changeUser } = useUserContext();
+  const router = useRouter();
+
+  const logout = () => {
+    changeUser!(0);
+    router.push("/");
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -30,12 +42,12 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
           <Image src={"/logo.svg"} width={90} height={38} alt="logo" />
           <Box display={"flex"} flexDirection={"row"} gap={1} alignItems={"center"}>
             <Box>
-              <Avatar sx={{ width: 32, height: 32, bgcolor: "gray" }} variant="circular">
-                {"A" || "B"}
+              <Avatar sx={{ width: 80, height: 32, bgcolor: "deepskyblue" }} variant="rounded">
+                {id == 0 ? <QuestionMarkOutlined /> : id}
               </Avatar>
             </Box>
             <Box>
-              <IconButton aria-label="logout" color={"inherit"}>
+              <IconButton aria-label="logout" onClick={logout} color="warning">
                 <LogoutRounded />
               </IconButton>
             </Box>
@@ -69,13 +81,14 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
                 <Box>
                   <ListItem disablePadding>
                     <Link
-                      display={"flex"}
-                      color={"inherit"}
-                      underline="none"
-                      textTransform={"none"}
-                      align="center"
-                      alignItems={"center"}
-                      justifyContent={"center"}
+                      style={{
+                        display: "flex",
+                        textDecoration: "none",
+                        color: "inherit",
+                        textTransform: "none",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
                       href={text.link}
                     >
                       <ListItemButton>
@@ -89,17 +102,16 @@ export default function ClippedDrawer(props: { children: React.ReactNode }) {
                   <List>
                     {text.sub?.map((su, index) => (
                       <Link
+                        style={{
+                          display: "flex",
+                          textDecoration: "none",
+                          color: "inherit",
+                          textTransform: "none",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
                         href={su.link}
-                        display={"flex"}
-                        minWidth={"100%"}
                         key={index}
-                        mb={1}
-                        color={"inherit"}
-                        underline="none"
-                        textTransform={"none"}
-                        align="center"
-                        alignItems={"center"}
-                        justifyContent={"center"}
                       >
                         <ListItemButton key={index}>
                           <ListItemIcon>{su.icon}</ListItemIcon>

@@ -5,15 +5,7 @@ import { Button, Typography } from "@mui/material";
 import { AddBoxOutlined, MoneySharp } from "@mui/icons-material";
 import Link from "next/link";
 
-const getExpenses = async () => {
-  const userId: number = 3;
-  const response = await fetch(process.env.SERVER_URI + `expenses/${userId}`, { cache: "no-cache" });
-  return response.json();
-};
-
 export default async function Expenses() {
-  const data = await getExpenses();
-
   return (
     <>
       <Box sx={{ maxWidth: "md", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
@@ -29,7 +21,7 @@ export default async function Expenses() {
         </Box>
       </Box>
       <Box sx={{ mb: 3, mt: 4, mx: "auto" }}>
-        <Expense data={data.data} />
+        <Expense />
       </Box>
     </>
   );

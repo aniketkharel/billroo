@@ -1,23 +1,23 @@
 "use client";
 
+import { useUserContext } from "@/user";
 import { Box, Button, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 
 export default function Login() {
+  const { id, changeUser } = useUserContext();
   const router = useRouter();
   const [error, seterror] = React.useState<boolean>(false);
   const [userId, setuserId] = React.useState(() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("userId")) {
-      return localStorage.getItem("userId");
-    }
+    return id || undefined;
   });
 
   const onLogin = () => {
-    if (!userId || userId === " ") {
+    if (!userId) {
       seterror(true);
     } else {
-      localStorage.setItem("userId", userId.toString());
+      changeUser!(userId);
       seterror(false);
       router.push("/expenses");
     }
@@ -39,7 +39,7 @@ export default function Login() {
         required={true}
         value={userId}
         label="ID"
-        onChange={(e) => setuserId(e.target.value)}
+        onChange={(e) => setuserId(parseInt(e.target.value))}
       />
       <Button color={"primary"} variant="contained" onClick={onLogin} fullWidth>
         Login
