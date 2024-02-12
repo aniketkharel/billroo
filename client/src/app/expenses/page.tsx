@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const getExpenses = async () => {
   const userId: number = 3;
-  const response = await fetch(process.env.SERVER_URI + `expenses/${userId}`);
+  const response = await fetch(process.env.SERVER_URI + `expenses/${userId}`, { cache: "no-cache" });
   return response.json();
 };
 

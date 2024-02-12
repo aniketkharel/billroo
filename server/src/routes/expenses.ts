@@ -60,7 +60,7 @@ expenseRouter.put("/today", async (req: Request, res: Response) => {
     !exp_id ||
     exp_id === " "
   ) {
-    return res.send({ data: [], msg: "No Data" });
+    return res.send({ data: [], msg: "No Data", status: 400 });
   }
   const result = await updateAmount(
     parseInt(exp_id),

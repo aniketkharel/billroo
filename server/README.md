@@ -6,6 +6,8 @@ Your Budget allocator.
 
 ```sql
 
+-- table schemas
+
   -- Create USERS table
 CREATE TABLE IF NOT EXISTS Users (
   id SERIAL PRIMARY KEY,
@@ -35,4 +37,4 @@ CREATE TABLE IF NOT EXISTS Expenses (
 
 ## References
 
-- https://github.com/microsoft/TypeScript-Node-Starter?tab=readme-ov-file#project-structure
+- [ts-node-starter](https://github.com/microsoft/TypeScript-Node-Starter?tab=readme-ov-file#project-structure)

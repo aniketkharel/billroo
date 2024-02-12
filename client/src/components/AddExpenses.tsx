@@ -52,7 +52,6 @@ export const AddExpense = (props: { data: [Data] }) => {
       } else {
         setOpen(true);
         setMessage(data.msg);
-        setInput(0);
         setSev("success");
       }
     }

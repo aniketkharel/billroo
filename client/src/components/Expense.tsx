@@ -2,8 +2,8 @@
 
 import React from "react";
 import { Box, Card, CardContent, Grid, List, Typography } from "@mui/material";
-import { ArrowDownwardOutlined, ArrowUpwardOutlined } from "@mui/icons-material";
-import { deepOrange, green } from "@mui/material/colors";
+import { ArrowDownwardOutlined, ArrowUpwardOutlined, MinimizeOutlined } from "@mui/icons-material";
+import { deepOrange, green, grey } from "@mui/material/colors";
 
 interface Data {
   id: string;
@@ -39,6 +39,15 @@ export const Expense = (props: { data: [Data] }) => {
                               <ArrowDownwardOutlined />{" "}
                               {Math.round(Math.abs(exp.avg_expense_per_user_category - exp.avg_expense_per_all_category))} % below average
                             </Typography>
+                          </>
+                        ) : Math.ceil(exp.avg_expense_per_user_category - exp.avg_expense_per_all_category) == 0 ? (
+                          <>
+                            <>
+                              <Typography color={grey[800]} variant="caption" display={"flex"} alignItems={"center"} fontSize={"large"}>
+                                <MinimizeOutlined />{" "}
+                                {Math.round(Math.abs(exp.avg_expense_per_user_category - exp.avg_expense_per_all_category))} % Neutral
+                              </Typography>
+                            </>
                           </>
                         ) : (
                           <>

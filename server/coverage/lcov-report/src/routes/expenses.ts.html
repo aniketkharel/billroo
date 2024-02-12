@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">58.62% </span>
+                <span class="strong">64.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/29</span>
+                <span class='fraction'>25/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">31.82% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/14</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>7/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">60% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>6/10</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">64.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/25</span>
+                <span class='fraction'>22/34</span>
             </div>
         
             
@@ -104,7 +104,31 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,8 +168,32 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,7 +206,7 @@ import {
   all,
   avgExpensePerCatergory,
   getExpenseForTheDayWithItsCateogry,
-  getExpensesForTheDay,
+  updateAmount,
 } from "../controllers/expenses";
 &nbsp;
 export const expenseRouter: Router = Router();
@@ -189,12 +237,36 @@ expenseRouter.get("/today/all/:id", async (req: Request, res: Response) =&gt; {
 expenseRouter.post("/today", async (req: Request, res: Response) =&gt; {
   const id: string = req.body.user_id;
   const cat_id: string = req.body.cat_id;
+  const amount: string = req.body.amount;
   <span class="missing-if-branch" title="else path not taken" >E</span>if (!id || <span class="branch-1 cbranch-no" title="branch not covered" >id === " " </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >!cat_id </span>|| <span class="branch-3 cbranch-no" title="branch not covered" >cat_id === " ")</span> {
     return res.send({ data: [], msg: "No Data" });
   }
   const result = <span class="cstat-no" title="statement not covered" >await addExpenseForTheDayPerCategory(</span>
     parseInt(id),
-    parseInt(cat_id)
+    parseInt(cat_id),
+    parseInt(amount)
+  );
+<span class="cstat-no" title="statement not covered" >  res.send(result);</span>
+});
+&nbsp;
+expenseRouter.put("/today", async (req: Request, res: Response) =&gt; {
+  const id: string = req.body.user_id;
+  const exp_id: string = req.body.exp_id;
+  const amount: string = req.body.amount;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (
+    !id ||
+<span class="branch-1 cbranch-no" title="branch not covered" >    id === " " </span>||
+<span class="branch-2 cbranch-no" title="branch not covered" >    !amount </span>||
+<span class="branch-3 cbranch-no" title="branch not covered" >    amount === " " </span>||
+<span class="branch-4 cbranch-no" title="branch not covered" >    !exp_id </span>||
+<span class="branch-5 cbranch-no" title="branch not covered" >    exp_id === " "</span>
+  ) {
+    return res.send({ data: [], msg: "No Data", status: 400 });
+  }
+  const result = <span class="cstat-no" title="statement not covered" >await updateAmount(</span>
+    parseInt(exp_id),
+    parseInt(id),
+    parseInt(amount)
   );
 <span class="cstat-no" title="statement not covered" >  res.send(result);</span>
 });
@@ -205,7 +277,7 @@ expenseRouter.post("/today", async (req: Request, res: Response) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Feb 11 2024 12:51:38 GMT+1100 (Australian Eastern Daylight Time)
+                at Mon Feb 12 2024 15:59:31 GMT+1100 (Australian Eastern Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

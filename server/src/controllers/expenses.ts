@@ -96,6 +96,6 @@ export const updateAmount = async (
     }
     return { data: res.rows, msg: "Cannot update your expense", status: 403 };
   } catch (err) {
-    return { data: [], msg: err.message };
+    return { data: [], msg: err.message, status: 403 };
   }
 };
