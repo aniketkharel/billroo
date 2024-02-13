@@ -19,7 +19,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
 
-app.use(cors({ origin: ["http://localhost:3000", "http://localhost:8083"] }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:8083",
+      "https://billroo.vercel.app",
+    ],
+  })
+);
 /* GET Routes
  *
  * */
