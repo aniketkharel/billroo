@@ -24,7 +24,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:8083",
-      "http://54.66.184.178",
+      "http://54.66.184.178:3000",
     ],
   })
 );
