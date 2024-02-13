@@ -18,14 +18,24 @@ export const PG_URI = prod
   ? process.env["PG_URI"]
   : process.env["PG_URI_LOCAL"];
 
+export const PG_USER = prod
+  ? process.env["PG_USER"]
+  : process.env["PG_USER_LOCAL"];
+
+export const PG_PASSWORD = prod
+  ? process.env["PG_PASSWORD"]
+  : process.env["PG_PASSWORD_LOCAL"];
+
+export const PG_DATABASE = prod
+  ? process.env["PG_DATABASE"]
+  : process.env["PG_DATABASE_LOCAL"];
+
 if (!PG_URI) {
   if (prod) {
-    logger.error(
-      "No mongo connection string. Set PG_URI environment variable."
-    );
+    logger.error("No  connection string. Set PG_URI environment variable.");
   } else {
     logger.error(
-      "No mongo connection string. Set PG_URI_LOCAL environment variable."
+      "No  connection string. Set PG_URI_LOCAL environment variable."
     );
   }
   process.exit(1);
