@@ -24,7 +24,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:8083",
-      "https://billroo.vercel.app",
+      "http://54.66.184.178",
     ],
   })
 );
