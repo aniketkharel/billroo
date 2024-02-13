@@ -1,6 +1,7 @@
 # Brillo
 
-[brillo.assessment](https://aniketkharel.com.np)
+You can checkout the site on
+:link: [http://54.66.184.178:3000](http://54.66.184.178:3000)
 
 A simple budget expense tracker made as a part of my assessment. I have tried my best to cover all the [requirements](./Requirements.md) mentioned.
 

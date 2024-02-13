@@ -97,7 +97,7 @@ export const ViewExpenses = () => {
 
   useEffect(() => {
     getExpenses();
-  });
+  }, [id]);
 
   const openEditor = () => {
     setOpen(true);

@@ -1,5 +1,5 @@
 import { EXPENSES_TABLE } from "../consts/tables";
-import { getClient } from "../bin/pg";
+import { Pool } from "../bin/pg";
 import { QueryResultRow } from "pg";
 import {
   QUERY_AVG,
@@ -18,8 +18,7 @@ interface Response {
 
 export const all = async (): Promise<Response> => {
   try {
-    const client = await getClient();
-    const res = await client.query(
+    const res = await Pool.query(
       `SELECT * from ${EXPENSES_TABLE} exp where exp.user_id=3`
     );
     return { data: res.rows };
@@ -30,8 +29,7 @@ export const all = async (): Promise<Response> => {
 
 export const getExpensesForTheDay = async (id: number): Promise<Response> => {
   try {
-    const client = await getClient();
-    const res = await client.query(QUERY_EXPENSES_CURRENT_DAY(id));
+    const res = await Pool.query(QUERY_EXPENSES_CURRENT_DAY(id));
     return { data: res.rows };
   } catch (err) {
     return { data: [], msg: err.message };
@@ -42,10 +40,7 @@ export const getExpenseForTheDayWithItsCateogry = async (
   id: number
 ): Promise<Response> => {
   try {
-    const client = await getClient();
-    const res = await client.query(
-      QUERY_EXPENSES_WITH_CATEGORY_CURRENT_DAY(id)
-    );
+    const res = await Pool.query(QUERY_EXPENSES_WITH_CATEGORY_CURRENT_DAY(id));
     return { data: res.rows };
   } catch (err) {
     return { data: [], msg: err.message };
@@ -54,8 +49,7 @@ export const getExpenseForTheDayWithItsCateogry = async (
 
 export const avgExpensePerCatergory = async (id: number): Promise<Response> => {
   try {
-    const client = await getClient();
-    const res = await client.query(QUERY_AVG(id));
+    const res = await Pool.query(QUERY_AVG(id));
     return { data: res.rows };
   } catch (err) {
     return { data: [], msg: err.message };
@@ -68,8 +62,7 @@ export const addExpenseForTheDayPerCategory = async (
   amount: number
 ): Promise<Response> => {
   try {
-    const client = await getClient();
-    const expense = await client.query(
+    const expense = await Pool.query(
       QUERY_EXPENSE_CURRENT_DAY_PER_CATEGORY(id, cat_id)
     );
     if (expense.rows.length) {
@@ -79,7 +72,7 @@ export const addExpenseForTheDayPerCategory = async (
         status: 403,
       };
     } else {
-      await client.query(
+      await Pool.query(
         INSERT_QUERY_EXPENSE_CURRENT_DAY_PER_CATEGORY(id, cat_id, amount)
       );
       return { data: [], msg: "Your expense has been inserted.", status: 200 };
@@ -95,8 +88,7 @@ export const updateAmount = async (
   amount: number
 ): Promise<Response> => {
   try {
-    const client = await getClient();
-    const res = await client.query(
+    const res = await Pool.query(
       UPDATE_EXPENSE_AMOUNT(exp_id, user_id, amount)
     );
     if (res.rowCount) {

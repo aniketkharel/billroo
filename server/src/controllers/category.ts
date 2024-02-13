@@ -1,5 +1,5 @@
 import { CATEGORY_TABLE } from "../consts/tables";
-import { getClient } from "../bin/pg";
+import { Pool } from "../bin/pg";
 import { QueryResultRow } from "pg";
 
 interface Response {
@@ -9,8 +9,7 @@ interface Response {
 
 export const all = async (): Promise<Response> => {
   try {
-    const client = await getClient();
-    const res = await client.query(`SELECT * from ${CATEGORY_TABLE}`);
+    const res = await Pool.query(`SELECT * from ${CATEGORY_TABLE}`);
     return { data: res.rows };
   } catch (err) {
     return { data: [], msg: err.message };
